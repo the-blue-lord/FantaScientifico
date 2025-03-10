@@ -23,16 +23,7 @@ int main(void) {
                 std::string request(buffer, received);
                 std::cout << "New request:\n\n" << request << "\n\n\n\n\n";
 
-                /*
-                std::ifstream file();
-                if (!file) {
-                    return "HTTP/1.1 404 Not Found\r\n"
-                        "Content-Type: text/plain\r\n"
-                        "Content-Length: 13\r\n"
-                        "\r\n"
-                        "404 Not Found";
-                }
-
+                std::ifstream file("file/path/to/file/here");
                 std::ostringstream contentStream;
                 contentStream << file.rdbuf();
                 std::string content = contentStream.str();
@@ -40,11 +31,8 @@ int main(void) {
                 std::ostringstream responseStream;
                 responseStream << "HTTP/1.1 200 OK\r\n"
                             << "Content-Type: text/html\r\n"
-                            << "Content-Length: " << content.size() << "\r\n"
-                            << "\r\n"
-                            << content;
-
-                return responseStream.str();*/
+                            << "Content-Length: 13\r\n"
+                            << "\r\nHello, world.";
             }
         }
     }
