@@ -38,6 +38,7 @@ int main(void) {
                             << content;
 
                 client.send(responseStream.str().c_str(), responseStream.str().size());
+                std::cout << "Response:\n\n" << responseStream.str() << "\n\n\n\n\n";
             }
         }
     }
