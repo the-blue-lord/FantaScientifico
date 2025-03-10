@@ -25,6 +25,7 @@ int main(void) {
                 std::cout << "New request:\n\n" << request << "\n\n\n\n\n";
 
                 std::ifstream file("file/path/to/file/here");
+
                 std::ostringstream contentStream;
                 contentStream << file.rdbuf();
                 std::string content = contentStream.str();
@@ -32,8 +33,9 @@ int main(void) {
                 std::ostringstream responseStream;
                 responseStream << "HTTP/1.1 200 OK\r\n"
                             << "Content-Type: text/html\r\n"
-                            << "Content-Length: 13\r\n"
-                            << "\r\nHello, world.";
+                            << "Content-Length: " << content.size() << "\r\n"
+                            << "\r\n"
+                            << content;
 
                 client.send(responseStream.str().c_str(), responseStream.str().size());
             }
