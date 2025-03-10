@@ -34,6 +34,8 @@ int main(void) {
                             << "Content-Type: text/html\r\n"
                             << "Content-Length: 13\r\n"
                             << "\r\nHello, world.";
+
+                client.send(responseStream.str().c_str(), responseStream.str().size());
             }
         }
     }
