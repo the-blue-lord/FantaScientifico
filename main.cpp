@@ -2,6 +2,7 @@
 #include "classes/ThreadPool.hpp"
 #include <SFML/Network.hpp>
 #include <fstream>
+#include <sstream>
 
 int main(void) {
     std::cout << "hello\n";
