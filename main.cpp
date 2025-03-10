@@ -1,6 +1,6 @@
 #include <iostream>
-#include "classes\ThreadPool.hpp"
-#include <SFML\Network.hpp>
+#include "classes/ThreadPool.hpp"
+#include <SFML/Network.hpp>
 #include <fstream>
 
 int main(void) {
