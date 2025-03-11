@@ -3,3 +3,4 @@ SFML-3.0.0_WIN-64bit
 main.exe
 sfml-network-3.dll
 sfml-system-3.dll
+tests
