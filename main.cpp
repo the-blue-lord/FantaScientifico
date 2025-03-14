@@ -22,10 +22,10 @@
 int main(void) {
     sf::TcpListener listener;
     if(listener.listen(6203) != sf::Socket::Status::Done) {
-        std::cout << "Error binding the lintener to the port\n";
+        std::cout << "Error binding the lintener to the port\r\n";
         return 1;
     }
-    std::cout << "Successfully binded the listener to the port\n\n\n";
+    std::cout << "Successfully binded the listener to the port\r\n\r\n\r\n";
 
     while(true) {
         sf::TcpSocket client;
@@ -34,7 +34,7 @@ int main(void) {
             std::size_t received;
 
             if(client.receive(buffer, sizeof(buffer), received) == sf::Socket::Status::Done) {
-                std::cout << "--------------- REQUEST ---------------\n\n";
+                std::cout << "--------------- REQUEST ---------------\r\n\r\n";
                 
                 rqst::RequestType request_type = rqst::getType(buffer);
                 const char* request_type_name = rqst::getTypeName(request_type);
@@ -43,20 +43,20 @@ int main(void) {
                 rqst::getPath(buffer, request_path, sizeof(request_path));
 
 
-                std::cout << "Request type: " << request_type_name << "\n"
-                    << "Request path: " << request_path << "\n"
+                std::cout << "Request type: " << request_type_name << "\r\n"
+                    << "Request path: " << request_path << "\r\n"
                     << "Request variables:";
 
                 auto vars = rqst::getArgs(buffer);
 
-                if(vars.empty()) std::cout << " No vars\n";
+                if(vars.empty()) std::cout << " No vars\r\n";
                 else
                 {
-                    std::cout << "\n";
-                    for (const auto& var : vars) std::cout << " - " << var.first << " = " << var.second << "\n";
+                    std::cout << "\r\n";
+                    for (const auto& var : vars) std::cout << " - " << var.first << " = " << var.second << "\r\n";
                 }
 
-                std::cout << "\n------------------------------------\n\n\n";
+                std::cout << "\r\n------------------------------------\r\n\r\n\r\n";
 
                 char response_path[512];
                 char response_content_type[512];
@@ -90,10 +90,10 @@ int main(void) {
 
                 if(client.send(response, response_length) == sf::Socket::Status::Done)
                 {
-                    std::cout << "--------------- RESPONSE ---------------\n\n";
+                    std::cout << "--------------- RESPONSE ---------------\r\n\r\n";
                     std::cout.write(response, sizeof(response) > MAX_FILE_DISPLAYED ? MAX_FILE_DISPLAYED : sizeof(response));
                     if(sizeof(response) > MAX_FILE_DISPLAYED) std::cout << " [[[ MORE CONTENT ]]]";
-                    std::cout << "\n\n------------------------------------\n\n\n";
+                    std::cout << "\r\n\r\n------------------------------------\r\n\r\n\r\n";
                 }
             }
         }
