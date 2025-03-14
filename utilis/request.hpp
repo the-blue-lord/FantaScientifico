@@ -126,7 +126,7 @@ namespace rqst
         return cnt;
     }
 
-    std::map<std::string, std::string> getArgs(const char* request)
+    std::map<std::string, std::string> getArgs(char* request)
     {
         std::map<std::string, std::string> result;
 
