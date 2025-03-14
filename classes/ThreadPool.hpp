@@ -1,3 +1,7 @@
+#ifndef THREADPOOL_H
+    #define THREADPOOL_H
+#endif
+
 #include <vector>
 #include <thread>
 #include <queue>

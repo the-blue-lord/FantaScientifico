@@ -1,9 +1,23 @@
 #include <iostream>
-#include "classes/ThreadPool.hpp"
-#include "utilis/request.hpp"
 #include <SFML/Network.hpp>
-#include <fstream>
-#include <sstream>
+
+#ifndef THREADPOOL_H
+    #include "classes/ThreadPool.hpp"
+#endif
+
+#ifndef UTILIS_H
+    #include "utilis/utilis.hpp"
+#endif
+
+#ifndef REQUEST_H
+    #include "utilis/request.hpp"
+#endif
+
+#ifndef RESPONSE_H
+    #include "utilis/response.hpp"
+#endif
+
+#define MAX_FILE_DISPLAYED 2048
 
 int main(void) {
     sf::TcpListener listener;
@@ -20,37 +34,67 @@ int main(void) {
             std::size_t received;
 
             if(client.receive(buffer, sizeof(buffer), received) == sf::Socket::Status::Done) {
-                //std::cout << "--------------- REQUEST ---------------\n\n" << buffer << "\n\n\n";
-
-
+                std::cout << "--------------- REQUEST ---------------\n\n";
                 
-                std::cout << "--------------- INFO ---------------\n\n";
+                rqst::RequestType request_type = rqst::getType(buffer);
+                const char* request_type_name = rqst::getTypeName(request_type);
 
-                char path[512];
-                std::cout << "Request type: " << rqst::getTypeName(rqst::getType(buffer)) << "\n";
-                std::cout << "Request path: " << rqst::getPath(buffer, path, sizeof(path)) << "\n";
-                std::cout << "Request variables:\n";
-                    auto vars = rqst::getArgs(buffer);
-                    if(vars.empty()) std::cout << "No vars\n";
-                    else for (const auto& var : vars) std::cout << " - " << var.first << " = " << var.second << "\n";
+                char request_path[512];
+                rqst::getPath(buffer, request_path, sizeof(request_path));
+
+
+                std::cout << "Request type: " << request_type_name << "\n"
+                    << "Request path: " << request_path << "\n"
+                    << "Request variables:";
+
+                auto vars = rqst::getArgs(buffer);
+
+                if(vars.empty()) std::cout << " No vars\n";
+                else
+                {
+                    std::cout << "\n";
+                    for (const auto& var : vars) std::cout << " - " << var.first << " = " << var.second << "\n";
+                }
 
                 std::cout << "\n------------------------------------\n\n\n";
 
-                std::ifstream file("templates/index.html");
+                char response_path[512];
+                char response_content_type[512];
 
-                std::ostringstream contentStream;
-                contentStream << file.rdbuf();
-                std::string content = contentStream.str();
+                if(request_type == rqst::RequestTypes::Get)
+                {
+                    if(!strcmp(request_path, "/favicon.ico"))
+                    {
+                        strncpy(response_path, "images/favicon.ico", sizeof(response_path));
+                        strncpy(response_content_type, "image/png", sizeof(response_content_type));
+                    }
+                    else if(!strcmp(request_path, "/"))
+                    {
+                        strncpy(response_path, "templates/test.html", sizeof(response_path));
+                        strncpy(response_content_type, "text/html", sizeof(response_content_type));
+                    }
+                }
+                else if(request_type == rqst::RequestTypes::Post)
+                {
+                    // do smth
+                }
 
-                std::ostringstream responseStream;
-                responseStream << "HTTP/1.1 200 OK\r\n"
-                            << "Content-Type: text/html\r\n"
-                            << "Content-Length: " << content.size() << "\r\n"
-                            << "\r\n"
-                            << content;
+                int file_length = fileSize(response_path);
+                if(file_length == -1) continue;
+                char content[file_length];
+                readFile(response_path, content, sizeof(content));
 
-                sf::Socket::Status status = client.send(responseStream.str().c_str(), responseStream.str().size());
-                //std::cout << "--------------- RESPONSE ---------------\n\n" << responseStream.str() << "\n\n\n";
+                int response_length = rspn::length(200, "ERROR", response_content_type, content, sizeof(content));
+                char response[response_length];
+                rspn::build(response, response_length, 200, "ERROR", response_content_type, content, sizeof(content));
+
+                if(client.send(response, response_length) == sf::Socket::Status::Done)
+                {
+                    std::cout << "--------------- RESPONSE ---------------\n\n";
+                    std::cout.write(response, sizeof(response) > MAX_FILE_DISPLAYED ? MAX_FILE_DISPLAYED : sizeof(response));
+                    if(sizeof(response) > MAX_FILE_DISPLAYED) std::cout << " [[[ MORE CONTENT ]]]";
+                    std::cout << "\n\n------------------------------------\n\n\n";
+                }
             }
         }
     }

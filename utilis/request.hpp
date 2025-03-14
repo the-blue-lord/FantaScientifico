@@ -1,26 +1,37 @@
+#ifndef REQUEST_H
+    #define REQUEST_H
+#endif
+
+
+
+#ifndef UTILIS_H
+    #include "utilis.hpp"
+#endif
+
 #include <string>
 #include <cstring>
 #include <map>
 
-#include "utilis.hpp"
 
 namespace rqst
 {
+    typedef int RequestType;
+
     const char* RequestTypeName[4] = {"Error", "Unknown", "GET", "POST"};
-    namespace RequestType
+    namespace RequestTypes
     {
-        int Error = -1;
-        int Unknown = 0;
-        int Get = 1;
-        int Post = 2;
+        RequestType Error = -1;
+        RequestType Unknown = 0;
+        RequestType Get = 1;
+        RequestType Post = 2;
     }
 
-    const  char* getTypeName(const int type)
+    const  char* getTypeName(const RequestType type)
     {
         return RequestTypeName[type+1];
     }
 
-    int getType(const char* request)
+    RequestType getType(const char* request)
     {
         if(!request)
         {
@@ -134,5 +145,22 @@ namespace rqst
         }
 
         return result;
+    }
+
+    char* getParameterValue(char* request, char* key, int key_length, char* value, int value_length)
+    {
+        char *start = strstr(request, key);
+        if(!start) return nullptr;
+        start += key_length;
+
+        char* end = strstr(start, "\r\n");
+
+        int length = end - start;
+        if(length >= value_length) length = value_length - 1;
+
+        strncpy(value, start, length);
+        value[length] = '\0';
+
+        return value;
     }
 }
