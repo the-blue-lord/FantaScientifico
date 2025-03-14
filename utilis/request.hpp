@@ -50,7 +50,7 @@ namespace rqst
         return 0;
     }
 
-    char* getPath(const char* request, char* path, const int path_size)
+    char* getPath(char* request, char* path, const int path_size)
     {
         if(!request || !path || path_size <= 0)
         {
@@ -87,7 +87,7 @@ namespace rqst
         return path;
     }
 
-    char* getRawArgs(const char* request, char* args, const int args_size)
+    char* getRawArgs(char* request, char* args, const int args_size)
     {
         char* min = strchr(request, ' ');
         if(!min) return nullptr;
