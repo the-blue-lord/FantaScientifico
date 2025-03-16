@@ -1,0 +1,12 @@
+#welcome-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-header {
+    padding-bottom: 8%;
+    margin: 0;
+    font-weight: 900;
+    font-size: 9vw;
+    display: block;
+}

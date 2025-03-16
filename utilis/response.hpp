@@ -12,6 +12,12 @@
 #include <map>
 
 namespace rspn {
+    std::map<std::string, std::string, bool> paths;
+
+    void addPath(std::string request_path, std::string file_path, bool needs_replace) {
+        //paths[request_path] = (file_path, needs_replace);
+    }
+
     int length(int statusCode, const char* status, const char* contentType, const char* content, const int content_length)
     {
         const char* str1 = "HTTP/1.1 ";
@@ -39,7 +45,8 @@ namespace rspn {
         snprintf(str6, sizeof(str6), "%d", content_length);
         const char* str7 = "\r\nConnection: close\r\n\r\n";
 
-        int responseLen = strlen(str1) + strlen(str2) + strlen(str3) + strlen(str4) + strlen(str5) + strlen(str6) + strlen(str7) + content_length + 1;
+        int strLen = strlen(str1) + strlen(str2) + strlen(str3) + strlen(str4) + strlen(str5) + strlen(str6) + strlen(str7);
+        int responseLen = strLen + content_length + 1;
 
         if(response_length < responseLen) responseLen = response_length;
 
@@ -52,10 +59,7 @@ namespace rspn {
         strncat(response, str5, responseLen);
         strncat(response, str6, responseLen);
         strncat(response, str7, responseLen);
-        //strncat(response, content, responseLen);
-
-        memcpy(response + strlen(response), content, content_length);
-        response[strlen(response) + content_length] = '\0';
+        strncat(response, content, responseLen);
 
         return response;
     }

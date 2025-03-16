@@ -1,0 +1,68 @@
+:root {
+    --litle-square-side: 5vw;
+    --min-litle-square-side: 35px;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #2044e8;
+    color: #030b54;
+    word-wrap: break-word;
+    overflow-x: hidden;
+}
+
+.hcentered {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+}
+
+.vcentered {
+    height: 100%;
+    display: flex;
+    margin: 0;
+    align-items: center;
+}
+
+.fixed-bar {
+    position: fixed;
+    width: 98vw;
+    padding: 1vw;
+    z-index: 1000;
+}
+.fixed-top {
+    top: 0;
+}
+.fixed-bottom {
+    bottom: 0;
+}
+
+.squared-little-button {
+    background-color: chartreuse;
+    width: var(--litle-square-side);
+    height: var(--litle-square-side);
+    min-width: var(--min-litle-square-side);
+    min-height: var(--min-litle-square-side);
+    border-radius: 15px;
+}
+
+#fullscreen-buttons {
+    display: flex;
+    justify-content: end;
+}
+
+#exit-fullscreen {
+    display: none;
+}
+
+#menu-bar button {
+    margin: 0 7vw;
+}
