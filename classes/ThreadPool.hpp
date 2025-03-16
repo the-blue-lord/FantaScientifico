@@ -14,7 +14,7 @@ class ThreadPool {
     std::queue<std::function<void()>> tasks;
     std::mutex queueMutex;
     std::condition_variable condition;
-    bool stop;
+    bool stop = false;
 
     public:
         ThreadPool(int thread_number) {

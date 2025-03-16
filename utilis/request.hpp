@@ -15,23 +15,23 @@
 
 namespace rqst
 {
-    typedef int RequestType;
+    typedef int RequestMethod;
 
-    const char* RequestTypeName[4] = {"Error", "Unknown", "GET", "POST"};
-    namespace RequestTypes
+    const char* requestMethodName[4] = {"Error", "Unknown", "GET", "POST"};
+    namespace RequestMethods
     {
-        RequestType Error = -1;
-        RequestType Unknown = 0;
-        RequestType Get = 1;
-        RequestType Post = 2;
+        RequestMethod Error = -1;
+        RequestMethod Unknown = 0;
+        RequestMethod Get = 1;
+        RequestMethod Post = 2;
     }
 
-    const  char* getTypeName(const RequestType type)
+    const  char* getMethodName(const RequestMethod method)
     {
-        return RequestTypeName[type+1];
+        return requestMethodName[method+1];
     }
 
-    RequestType getType(const char* request)
+    RequestMethod getMethod(const char* request)
     {
         if(!request)
         {
@@ -162,5 +162,35 @@ namespace rqst
         value[length] = '\0';
 
         return value;
+    }
+
+    std::map<std::string, std::string> printRequest(char* buffer, const sf::TcpSocket* client_ptr)
+    {
+        std::cout << "--------------- REQUEST ---------------\r\n\r\n";
+                    
+        rqst::RequestMethod request_method = rqst::getMethod(buffer);
+        const char* request_method_name = rqst::getMethodName(request_method);
+    
+        char request_path[512];
+        rqst::getPath(buffer, request_path, sizeof(request_path));
+    
+    
+        std::cout << "Adress: " << client_ptr->getRemoteAddress().value() << "\r\n"
+            << "Request type: " << request_method_name << "\r\n"
+            << "Request path: " << request_path << "\r\n"
+            << "Request variables:";
+    
+        auto vars = getArgs(buffer);
+
+        if(vars.empty()) std::cout << " No vars\r\n";
+        else
+        {
+            std::cout << "\r\n";
+            for (const auto& var : vars) std::cout << " - " << var.first << " = " << var.second << "\r\n";
+        }
+    
+        std::cout << "\r\n------------------------------------\r\n\r\n\r\n\r\n";
+
+        return vars;
     }
 }
