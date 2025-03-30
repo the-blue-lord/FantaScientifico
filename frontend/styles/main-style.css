@@ -13,8 +13,8 @@ body {
     width: 100%;
     margin: 0;
     font-family: "Segoe UI", sans-serif;
-    background-color: #2044e8;
-    color: #030b54;
+    background-color: #000000;
+    color: #ffffff;
     word-wrap: break-word;
     overflow-x: hidden;
 }
@@ -46,12 +46,25 @@ body {
 }
 
 .squared-little-button {
-    background-color: chartreuse;
+    cursor: pointer;
     width: var(--litle-square-side);
     height: var(--litle-square-side);
     min-width: var(--min-litle-square-side);
     min-height: var(--min-litle-square-side);
     border-radius: 15px;
+    border: 2px solid #dddddd;
+    background-color: #111111;
+    color: #ffffff;
+}
+.squared-little-button:hover {
+    cursor: pointer;
+    border: 2px solid #cccccc;
+    background-color: #333333;
+}
+.squared-little-button:active {
+    cursor: pointer;
+    border: 2px solid #cccccc;
+    background-color: #555555;
 }
 
 #fullscreen-buttons {

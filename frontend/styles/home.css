@@ -4,6 +4,7 @@
 }
 
 .welcome-header {
+    cursor: pointer;
     padding-bottom: 8%;
     margin: 0;
     font-weight: 900;
