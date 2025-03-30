@@ -20,6 +20,8 @@
 #define MAX_FILE_DISPLAYED 2048
 
 int main(int argc, char** argv) {
+    std::cout << "\r\n\r\n\r\n";
+
     int port = 6203;
     if(argc > 1) port = atoi(argv[1]);
 
