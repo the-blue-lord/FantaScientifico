@@ -175,7 +175,7 @@ namespace rqst
         rqst::getPath(buffer, request_path, sizeof(request_path));
     
     
-        std::cout << "Adress: " << client_ptr->getRemoteAddress()->toString() << "\r\n"
+        std::cout << "Adress: " << client_ptr->getRemoteAddress().toString() << "\r\n"
             << "Request type: " << request_method_name << "\r\n"
             << "Request path: " << request_path << "\r\n"
             << "Request variables:";
