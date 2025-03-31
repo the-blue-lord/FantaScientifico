@@ -3,6 +3,12 @@
     --min-litle-square-side: 35px;
 }
 
+@font-face {
+    font-family: "Bebas Neue";
+    src: url("../fonts/BebasNeue-Regular.otf") format("truetype");
+    font-weight: normal;
+}
+
 html {
     height: 100%;
     width: 100%;
@@ -12,7 +18,7 @@ body {
     height: 100%;
     width: 100%;
     margin: 0;
-    font-family: "Segoe UI", sans-serif;
+    font-family: "Bebas Neue", sans-serif;
     background-color: #000000;
     color: #ffffff;
     word-wrap: break-word;
