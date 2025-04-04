@@ -80,6 +80,7 @@ int main(int argc, char** argv) {
                     int response_length = rspn::length(200, status, response_content_type, content, file_length);
                     char response[response_length];
                     rspn::build(response, response_length, 200, status, response_content_type, content, file_length);
+                    std::cout << "--------------- ALMOST --------------- " << response_path << " --- " << request_path << "\r\n\r\n";
 
                     // Log the response
                     if(client_ptr->send(response, response_length) == sf::Socket::Status::Done)
@@ -93,6 +94,7 @@ int main(int argc, char** argv) {
 
                         std::cout << "\r\n\r\n------------------------------------\r\n\r\n\r\n\r\n";
                     }
+                    else std::cout << "Error sending the response\r\n\r\n\r\n";
                 }
             });
         }

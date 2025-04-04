@@ -1,0 +1,20 @@
+#welcome-div {
+    font-size: 2.5vw;
+    top: 0vw;
+    left: 0vw;
+    font-size: 0.7vh;
+    width: 100vw;
+    margin: 1.5vh;
+}
+
+#icon-background {
+    border-radius: 10%;
+    padding: 0.5vh;
+    background-color: #333333;
+}
+#icon-background:hover {
+    background-color: #555555;
+}
+#icon-background:active {
+    background-color: #777777;
+}

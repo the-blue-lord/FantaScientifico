@@ -6,21 +6,38 @@
     <link href="/favicon.ico" rel="icon" type="image/x-icon">
     
     <link href="/stylesheet?filename=main-style.css" rel="stylesheet">
-    <link href="/stylesheet?filename=home.css" rel="stylesheet">
+    <link href="/stylesheet?filename=minor-page.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, inital-scale=1">
 </head>
 
 <body>
-    <div id="welcome-div" class="hcentered vcentered">
-        <h1 class="welcome-header" onclick="window.location.href='/'">FANTA VOLTA</h1>
-        <h1 class="welcome-header">Punteggi</h1>
+    <div id="welcome-div" class="hcentered" style="justify-content: left;">
+        <div id="icon-background">
+            <h1 class="welcome-header regular" onclick="window.location.href='/'">FANTA</h1>
+            <span style="width: 0.5vw;"></span>
+            <h1 class="welcome-header thin" onclick="window.location.href='/'">VOLTA</h1>
+        </div>
     </div>
 
+    <div id="welcome-div" class="hcentered">
+        <h1 class="welcome-header regular subtitle">BONUS / MALUS</h1>
+    </div>
+
+    
+
     <div id="menu-bar" class="fixed-bar fixed-bottom hcentered">
-        <button id="login" class="squared-little-button" onclick="window.location.href='/login'">L</button>
-        <button id="points" class="squared-little-button" onclick="window.location.href='/punteggi'">P</button>
-        <button id="rules" class="squared-little-button" onclick="window.location.href='/regole'">R</button>
-        <button id="info" class="squared-little-button" onclick="window.location.href='/info'">I</button>
+        <button id="login" class="squared-little-button hcentered vcentered" onclick="window.location.href='/login'">
+            <img src="/image?filename=login-icon.png" alt="Login Icon" class="button-icon">
+        </button>
+        <button id="points" class="squared-little-button" onclick="window.location.href='/punteggi'">
+            <img src="/image?filename=points-icon.png" alt="Points Icon" class="button-icon">
+        </button>
+        <button id="rules" class="squared-little-button" onclick="window.location.href='/regole'">
+            <img src="/image?filename=rules-icon.png" alt="Rules Icon" class="button-icon">
+        </button>
+        <button id="info" class="squared-little-button" onclick="window.location.href='/info'">
+            <img src="/image?filename=info-icon.png" alt="Info Icon" class="button-icon">
+        </button>
     </div>
 </body>
 

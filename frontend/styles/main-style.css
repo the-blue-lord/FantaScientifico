@@ -3,18 +3,13 @@
     --min-litle-square-side: 35px;
 }
 
-@font-face {
-    font-family: "Bebas Neue";
-    src: url("../fonts/BebasNeue-Regular.otf") format("truetype");
-    font-weight: normal;
-}
-
 html {
     height: 100%;
     width: 100%;
 }
 
 body {
+    overflow-x: hidden;
     height: 100%;
     width: 100%;
     margin: 0;
@@ -22,7 +17,30 @@ body {
     background-color: #000000;
     color: #ffffff;
     word-wrap: break-word;
-    overflow-x: hidden;
+}
+
+#welcome-div {
+    margin: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.welcome-header {
+    cursor: pointer;
+    padding-bottom: 8%;
+    margin: 0;
+    padding: 0;
+    display: block;
+    transform: scaleY(1.05);
+    z-index: 500;
+}
+
+.regular {
+    font-weight: 700;
+}
+
+.thin {
+    font-weight: 100;
 }
 
 .hcentered {
@@ -32,10 +50,16 @@ body {
 }
 
 .vcentered {
-    height: 100%;
+    height: 90%;
     display: flex;
     margin: 0;
     align-items: center;
+}
+
+.subtitle {
+    cursor: default;
+    margin: 0px;
+    font-size: 6vw;
 }
 
 .fixed-bar {
@@ -52,6 +76,7 @@ body {
 }
 
 .squared-little-button {
+    padding: 0;
     cursor: pointer;
     width: var(--litle-square-side);
     height: var(--litle-square-side);
@@ -71,6 +96,13 @@ body {
     cursor: pointer;
     border: 2px solid #cccccc;
     background-color: #555555;
+}
+
+.button-icon {
+    width: 60%;
+    min-width: 20px;
+    min-height: 20px;
+    margin: 0 1vw;
 }
 
 #fullscreen-buttons {

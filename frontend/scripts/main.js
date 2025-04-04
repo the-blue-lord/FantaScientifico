@@ -11,7 +11,7 @@ function enterPartialscreen() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    const numStars = 600;
+    const numStars = 100;
 
     for (let i = 0; i < numStars; i++) {
         let star = document.createElement("div");
@@ -36,9 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if(startX > startY) endY = endY + startY - startX;
         else endX = endX + startX - startY;
-
-        //endX -= 6;
-        endY -= 6;
 
         let timingScale = Math.sqrt(((endX-startX)**2)+((endY-startY)**2))/(100*Math.sqrt(2));
 

@@ -50,6 +50,36 @@ namespace rspn {
             strncpy(response_path, style_path, response_path_size);
             strncpy(response_content_type, "text/javascript", response_content_type_size);
         }
+        else if(!strcmp(request_path, "/image"))
+        {
+            auto it = vars.find("filename");
+            if(it == vars.end()) return false;
+            const char* filename = (it->second).c_str();
+
+            char* index = strstr(request_path, "..");
+            if(index) return false;
+
+            char style_path[20+strlen(filename)];
+            snprintf(style_path, sizeof(style_path), "frontend/images/%s", filename);
+
+            strncpy(response_path, style_path, response_path_size);
+            strncpy(response_content_type, "image/*", response_content_type_size);
+        }
+        else if(!strcmp(request_path, "/component"))
+        {
+            auto it = vars.find("filename");
+            if(it == vars.end()) return false;
+            const char* filename = (it->second).c_str();
+
+            char* index = strstr(request_path, "..");
+            if(index) return false;
+
+            char style_path[20+strlen(filename)];
+            snprintf(style_path, sizeof(style_path), "frontend/components/menu-bar.html");
+
+            strncpy(response_path, style_path, response_path_size);
+            strncpy(response_content_type, "text/html", response_content_type_size);
+        }
         else if(!strcmp(request_path, "/login"))
         {
             strncpy(response_path, "frontend/pages/login.html", response_path_size);
