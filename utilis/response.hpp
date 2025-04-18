@@ -32,7 +32,9 @@ namespace rspn {
         {
             auto it = vars.find("filename");
             if(it == vars.end()) return false;
-            const char* filename = (it->second).c_str();
+            const char* const_filename = (it->second).c_str();
+            char filename[strlen(const_filename)+8];
+            snprintf(filename, sizeof(filename), "%s", const_filename);
 
             char* index = strstr(filename, "..");
             if(index) {
@@ -57,7 +59,9 @@ namespace rspn {
         {
             auto it = vars.find("filename");
             if(it == vars.end()) return false;
-            const char* filename = (it->second).c_str();
+            const char* const_filename = (it->second).c_str();
+            char filename[strlen(const_filename)+8];
+            snprintf(filename, sizeof(filename), "%s", const_filename);
 
             char* index = strstr(filename, "..");
             if(index) {
@@ -82,7 +86,9 @@ namespace rspn {
         {
             auto it = vars.find("filename");
             if(it == vars.end()) return false;
-            const char* filename = (it->second).c_str();
+            const char* const_filename = (it->second).c_str();
+            char filename[strlen(const_filename)+8];
+            snprintf(filename, sizeof(filename), "%s", const_filename);
 
             char* index = strstr(filename, "..");
             if(index) {
@@ -107,7 +113,9 @@ namespace rspn {
         {
             auto it = vars.find("filename");
             if(it == vars.end()) return false;
-            const char* filename = (it->second).c_str();
+            const char* const_filename = (it->second).c_str();
+            char filename[strlen(const_filename)+8];
+            snprintf(filename, sizeof(filename), "%s", const_filename);
 
             char* index = strstr(filename, "..");
             if(index) {
