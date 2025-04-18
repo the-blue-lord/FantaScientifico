@@ -1,39 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="it" class="hblock vblock">
 
 <head>
-    <title>Fanta Volta</title>
+    <meta charset="UTF-8">
+    <title>404 - Pagina non trovata</title>
     <link href="/favicon.ico" rel="icon" type="image/x-icon">
-    
+
     <link href="/stylesheet?filename=main-style.css" rel="stylesheet">
     <link href="/stylesheet?filename=minor-page.css" rel="stylesheet">
-    <link href="/stylesheet?filename=login-page.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, inital-scale=1">
+    <link href="/stylesheet?filename=error-page.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body class="hblock vblock">
-    <div id="welcome-div" class="hcentered" style="justify-content: left;">
+
+    <div id="welcome-div" class="hcentered left-align">
         <div id="icon-background">
             <h1 class="welcome-header regular" onclick="window.location.href='/'">FANTA</h1>
-            <span style="width: 0.5vw;"></span>
+            <span class="spacer"></span>
             <h1 class="welcome-header thin" onclick="window.location.href='/'">VOLTA</h1>
         </div>
     </div>
 
-    <!--
-    <div id="welcome-div" class="hcentered">
-        <h1 class="welcome-header regular subtitle">ACCEDI</h1>
+    <div id="error-wrapper" class="hcentered vcentered">
+        <div id="error-content">
+            <h1 class="error-code">404</h1>
+            <p class="error-text">Pagina non trovata</p>
+            <p></p>
+            <button class="error-button" onclick="window.location.href='/'">Torna alla Home</button>
+        </div>
     </div>
-    -->
-
-    <div id="login-div" class="hcentered vcentered">
-        <form id="login-form" method="GET" action="/account-access">
-            <input type="text" name="username" placeholder="USERNAME" required class="login-input">
-            <input type="password" name="password" placeholder="PASSWORD" required class="login-input">
-            <button type="submit" class="login-button">ACCEDI</button>
-        </form>
-    </div>
-    
 
     <div id="menu-bar" class="fixed-bar fixed-bottom hcentered">
         <button id="login" class="squared-little-button hcentered vcentered" onclick="window.location.href='/login'">
@@ -49,8 +46,8 @@
             <img src="/image?filename=info-icon.png" alt="Info Icon" class="button-icon">
         </button>
     </div>
+
+    <script src="/script?filename=main.js"></script>
 </body>
 
 </html>
-
-<script src="/script?filename=main.js"></script>

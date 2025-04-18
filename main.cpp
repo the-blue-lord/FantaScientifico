@@ -53,34 +53,35 @@ int main(int argc, char** argv) {
 
                     // Get the path and the information of the response
                     bool state = true;
-                    char response_path[512] = "frontend/pages/home.html";
+                    char response_path[512] = "frontend/errors/404.html";
                     char response_content_type[512] = "text/html";
                     char status[10] = "OK";
                     bool binary_file = false;
+                    int statusCode = 404;
 
                     if(request_method == rqst::RequestMethods::Get)
                         state = rspn::getResponsePath(
-                            request_path, vars,
+                            request_path, vars, &statusCode,
                             response_path, sizeof(response_path),
                             response_content_type, sizeof(response_content_type),
                             &binary_file
                         );
                     else if(request_method == rqst::RequestMethods::Post) {}
                     else return;
-                    if(!state) return;
+                    if(!state) strncpy(status, "ERROR", sizeof(status));
 
 
                     // Get the requested file
                     int file_length = fileSize(response_path);
+                    std::clog << response_path << "\n\n";
                     if(file_length == -1) return;
                     char content[file_length+1];
                     readFile(response_path, content, sizeof(content));
 
                     // Build the response
-                    int response_length = rspn::length(200, status, response_content_type, content, file_length);
+                    int response_length = rspn::length(statusCode, status, response_content_type, content, file_length);
                     char response[response_length];
-                    rspn::build(response, response_length, 200, status, response_content_type, content, file_length);
-                    std::cout << "--------------- ALMOST --------------- " << response_path << " --- " << request_path << "\r\n\r\n";
+                    rspn::build(response, response_length, statusCode, status, response_content_type, content, file_length);
 
                     // Log the response
                     if(client_ptr->send(response, response_length) == sf::Socket::Status::Done)

@@ -1,0 +1,64 @@
+/* Fix alignment of welcome banner */
+.left-align {
+    justify-content: left;
+}
+
+/* Spacer between FANTA and VOLTA */
+.spacer {
+    width: 0.5vw;
+}
+
+/* Error page layout */
+#error-wrapper {
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    width: 100%;
+}
+
+#error-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-code {
+    font-size: 15vw;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 0 10px #ffffff22;
+    margin: 0;
+}
+
+.error-text {
+    font-size: 4vw;
+    font-family: "Bebas Neue", sans-serif;
+    color: #ffffffcc;
+    margin: 0;
+}
+
+.error-button {
+    padding: 10px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.error-button:hover {
+    background-color: #dddddd;
+}
+
+.error-button:active {
+    background-color: #aaaaaa;
+}
